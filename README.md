@@ -1,129 +1,126 @@
 # Secure Virtual Network Access Management Policy
 
-## Purpose
-- Enforce least-privilege access to virtual machines (VMs) within the virtual network.
-- Ensure only authorized users and groups can access and interact with the VMs.
-- Align access control mechanisms with **Cloud Control Matrix (CCM)** standards to enhance security posture.
+## **Purpose**
+The goal of this project is to secure access to virtual machines (VMs) in a cloud network by enforcing **least-privilege access** and ensuring only authorized users or groups can interact with these VMs. The policy follows **Cloud Control Matrix (CCM)** standards to strengthen security.
 
-## Scope
-- Applies to all virtual machines within the specified virtual network.
-- Ensures compliance with Cloud Security Alliance (CSA) **Cloud Control Matrix (CCM)** access management and auditing controls.
+## **Scope**
+This policy applies to all virtual machines within the network and ensures compliance with the **Cloud Security Alliance's Cloud Control Matrix (CCM)** for access management and auditing.
 
-## Access Control Rules
+---
+
+## **Access Control Rules**
 
 ### 1. Finance Group Access
-- **Action:** Allow  
-- **Resources:** VM1 (if applicable)  
-- **Users/Groups:** Finance group (Luke, Jan, and Kevin)  
-- **Permissions:** Read, Write, Execute  
-- **CCM Reference:** IAM-03: Least Privilege Access
+- **Allowed:** Finance group members (Luke, Jan, Kevin)
+- **Permissions:** Read, Write, Execute on VM1 (if applicable)
+- **Compliance:** CCM IAM-03: Least Privilege Access
 
 ### 2. HR Group Access
-- **Action:** Allow  
-- **Resources:** VM2 (if applicable)  
-- **Users/Groups:** HR group (Jan, Kevin, John)  
-- **Permissions:** Read, Write, Execute  
-- **CCM Reference:** IAM-03: Least Privilege Access
+- **Allowed:** HR group members (Jan, Kevin, John)
+- **Permissions:** Read, Write, Execute on VM2 (if applicable)
+- **Compliance:** CCM IAM-03: Least Privilege Access
 
 ### 3. IT Group Access
-- **Action:** Allow  
-- **Resources:** All VMs  
-- **Users/Groups:** IT group (Luke, Mark, Kevin)  
-- **Permissions:** Full Control (or specified permissions as required)  
-- **CCM Reference:** IAM-04: Secure Administration
+- **Allowed:** IT group members (Luke, Mark, Kevin)
+- **Permissions:** Full Control on all VMs
+- **Compliance:** CCM IAM-04: Secure Administration
 
 ### 4. Individual User Access (Exceptions)
-- **Action:** Allow/Deny (based on specific needs)  
-- **Resources:** Specific VMs  
-- **Users:** Individual users (e.g., Sam)  
-- **Permissions:** As required  
-- **CCM Reference:** IAM-06: User Access Reviews
+- **Allowed/Deny:** Based on specific needs
+- **Permissions:** As required on specific VMs
+- **Compliance:** CCM IAM-06: User Access Reviews
 
 ### 5. Deny All Other Access
-- **Action:** Deny  
-- **Resources:** All VMs  
-- **Users/Groups:** All other users and groups not explicitly defined in the above rules.  
-- **CCM Reference:** IAM-02: Access Management Policy
+- **Denied:** All other users or groups not listed
+- **Compliance:** CCM IAM-02: Access Management Policy
 
 ---
 
-## Cloud Audit
+## **Cloud Audit & Compliance Questions**
 
-### General Questions
-1. Can you provide a list of all virtual machines within the specified virtual network?  
-   **Answer:**
-<p align="center">
-<img src="https://i.imgur.com/JZ6xVS0.png" height="80%" width="80%" alt="Endpoint vulnerabilities"/>
+### General Questions:
+1. **VM List in Network?**  
+   **Answer:**  
+   ![VM List in Network](https://i.imgur.com/JZ6xVS0.png)  
+   *Example of virtual machines in the network.*
 
-2. What are the current access control mechanisms in place for these virtual machines?  
-   **Answer:** None  
+2. **Current Access Control Mechanisms?**  
+   **Answer:** None
 
-3. Are there any documented exceptions to the "Deny All Other Access" rule in the policy?  
-   **Answer:** None  
-4. How are user accounts and groups managed within the organization?  
-   **Answer:** Azure Active Directory  
-<p align="center">
-<img src="https://i.imgur.com/565f0Rv.png" height="80%" width="80%" alt="Endpoint vulnerabilities"/>
+3. **Exceptions to Access Control Rules?**  
+   **Answer:** No
 
-<img src="https://i.imgur.com/gySrfHw.png" height="80%" width="80%" alt="Endpoint vulnerabilities"/>
+4. **How are User Accounts Managed?**  
+   **Answer:** Managed through **Azure Active Directory**  
+   ![Azure AD](https://i.imgur.com/565f0Rv.png)  
+   *User and group management in Azure Active Directory*
 
-### Policy-Related Questions
-5. Can you confirm that the Finance group includes users Luke, Jan, and Kevin?  
-   **Answer:** Yes, but there is another user (fraudster).  
+### Policy Questions:
+5. **Finance Group Members (Luke, Jan, Kevin)?**  
+   **Answer:** Yes, but there’s an unauthorized user.
 
-<p align="center">
-<img src="https://i.imgur.com/K6i1bSh.png" height="80%" width="80%" alt="Endpoint vulnerabilities"/>
-  
-6. Does the HR group include users Jan, Kevin, and John?  
-   **Answer:** Yes  
-<p align="center">
-<img src="https://i.imgur.com/mVSWZ6s.png" height="80%" width="80%" alt="Endpoint vulnerabilities"/>
+6. **HR Group Members (Jan, Kevin, John)?**  
+   **Answer:** Yes
 
-7. Does the IT group (Luke, Mark, and Kevin) have Full Control on all VMs?  
-   **Answer:** No, Mark is not in the group.  
+7. **Does IT Group Have Full Control on All VMs?**  
+   **Answer:** No, Mark is missing from the group.
 
-<p align="center">
-<img src="https://i.imgur.com/8kjlkfK.png" height="80%" width="80%" alt="Endpoint vulnerabilities"/>
+8. **Exceptions for Individual User Access?**  
+   **Answer:** No, no documented exceptions.
 
-8. Are there any documented justifications for individual user access exceptions?  
-  **Answer:** No
-### Least Privilege Questions
-9. How do you ensure that users/groups receive only the necessary permissions?  
-   **Answer:** No, an unknown user has access to the Finance Group.  
-10. Are there regular reviews to adjust user permissions?  
-    **Answer:** No  
-11. What mechanisms prevent unauthorized VM access?  
-    **Answer:** None  
-- **CCM Reference:** IAM-06: User Access Reviews
+### Least Privilege Questions:
+9. **How are Permissions Managed?**  
+   **Answer:** Some unauthorized access found in Finance group.
 
-### Auditing and Monitoring Questions
-12. Are there logs tracking user activity on VMs?  
-    **Answer:** No  
-13. How are logs monitored and analyzed?  
-    **Answer:** No  
-14. Are there automated tools to enforce access control policies?  
-    **Answer:** No  
-- **CCM Reference:** LOG-01: Audit Logging & Monitoring
+10. **Regular Permission Reviews?**  
+    **Answer:** No
 
-### Remediation Questions
-15. What are the procedures for addressing access control policy violations?  
-    **Answer:** Continuous monitoring and internal audits should be conducted regularly.  
-16. How are access control changes documented and approved?  
-    **Answer:** No changes have been made.  
-- **CCM Reference:** CCC-03: Change Management Policy
+11. **Mechanisms to Prevent Unauthorized Access?**  
+    **Answer:** None
+
+### Auditing & Monitoring Questions:
+12. **Logs for User Activity on VMs?**  
+    **Answer:** No
+
+13. **How Are Logs Analyzed?**  
+    **Answer:** No monitoring
+
+14. **Automated Tools for Enforcement?**  
+    **Answer:** No
+
+### Remediation Questions:
+15. **What to Do for Policy Violations?**  
+    **Answer:** Continuous monitoring and audits recommended.
+
+16. **How Are Access Control Changes Approved?**  
+    **Answer:** No process in place for change approval.
 
 ---
 
-## Recommendations
-- Implement **role-based access control (RBAC)** to enforce least privilege (**IAM-03**).
-- Conduct **regular audits** to review user permissions (**IAM-06**).
-- Enable **logging and monitoring** for user activity on VMs (**LOG-01**).
-- Use **automated tools** to detect and prevent unauthorized access (**IAM-02**).
-- Establish **a formal approval process** for access control changes (**CCC-03**).
+## **Recommendations**
+
+- **Implement Role-Based Access Control (RBAC):** Enforce least-privilege access for users (**IAM-03**).
+- **Conduct Regular Audits:** Review user permissions regularly (**IAM-06**).
+- **Enable Logging & Monitoring:** Track activity and detect any unauthorized access (**LOG-01**).
+- **Use Automated Enforcement Tools:** Help prevent unauthorized access (**IAM-02**).
+- **Establish Approval Process for Changes:** Ensure all access control changes are approved (**CCC-03**).
 
 ---
 
-### Implementation References
-- **Cloud Security Alliance (CSA) Cloud Control Matrix (CCM)** - IAM, LOG, CCC domains
-- **Azure Active Directory Role-Based Access Control (RBAC) Best Practices**
+## **Implementation References**
+- **Cloud Security Alliance (CSA) Cloud Control Matrix (CCM)** - Refer to IAM, LOG, and CCC domains for standards.
+- **Azure Active Directory RBAC Best Practices** - Use these best practices for managing user roles and permissions.
+
 ---
+
+## **Visuals & Screenshots**
+Here are some visuals that help clarify the access management implementation:
+
+![VM List in Network](https://i.imgur.com/JZ6xVS0.png)  
+*Virtual Machines within the specified network*
+
+![Azure AD](https://i.imgur.com/565f0Rv.png)  
+*User and group management in Azure Active Directory*
+
+---
+
