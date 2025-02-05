@@ -84,8 +84,9 @@
 
 <p align="center">
 <img src="https://i.imgur.com/8kjlkfK.png" height="80%" width="80%" alt="Endpoint vulnerabilities"/>
-8. Are there any documented justifications for individual user access exceptions?  
 
+8. Are there any documented justifications for individual user access exceptions?  
+  **Answer:** No
 ### Least Privilege Questions
 9. How do you ensure that users/groups receive only the necessary permissions?  
    **Answer:** No, an unknown user has access to the Finance Group.  
@@ -125,6 +126,4 @@
 ### Implementation References
 - **Cloud Security Alliance (CSA) Cloud Control Matrix (CCM)** - IAM, LOG, CCC domains
 - **Azure Active Directory Role-Based Access Control (RBAC) Best Practices**
-- **NIST SP 800-53 Access Control (AC) Family Guidelines**
-
 ---
